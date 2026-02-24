@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hunter Nilsen — Interactive Resume. RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
+    <title>Hunter Nilsen — Interactive Resume</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/ryuu.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* U of U Core Palette */
+            --color-red: #BE0000;
+            --color-red-dark: #890000;
+            --color-red-light: #D93333;
+            --color-gold: #FFB81D;
+            --color-gray: #707271;
+
+            /* Dark Mode Surface */
+            --color-bg: #0A0A0C;
+            --color-surface: #151517;
+            --color-surface-raised: #1C1C1F;
+
+            /* Text */
+            --color-text-primary: #F0F0F0;
+            --color-text-secondary: #8E8E93;
+
+            /* Borders */
+            --color-border: rgba(255, 255, 255, 0.07);
+            --color-border-hover: rgba(190, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.025;
+            z-index: 9999;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-red), var(--color-gold));
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* ========== Header ========== */
+        .header-glass {
+            background: rgba(21, 21, 23, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--color-border);
+        }
+
+        .header-container {
+            position: sticky;
+            top: 16px;
+            margin: 16px auto;
+            max-width: 1400px;
+            border-radius: 16px;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .site-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--color-text-primary);
+            letter-spacing: 0.01em;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--color-text-secondary);
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link:hover {
+            color: var(--color-red);
+        }
+
+        .social-link:focus {
+            outline: 2px solid var(--color-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* ========== Main Content ========== */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        /* ========== Experience & Education ========== */
+        .exp-edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 32px;
+            margin-bottom: 48px;
+        }
+
+        .info-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .info-card-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .company-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-text-primary);
+        }
+
+        .company-meta {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 30px;
+            bottom: -10px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--color-gray);
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot.current {
+            background: var(--color-red);
+            box-shadow: 0 0 10px rgba(190, 0, 0, 0.5);
+        }
+
+        .timeline-role-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-text-primary);
+        }
+
+        .timeline-role-dates {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .school-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-text-primary);
+            margin-bottom: 12px;
+        }
+
+        .degree-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .degree-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: var(--color-red);
+            flex-shrink: 0;
+        }
+
+        .degree-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-text-primary);
+        }
+
+        .degree-field {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        /* ========== Filters ========== */
+        .filter-section {
+            margin-top: 40px;
+            margin-bottom: 48px;
+        }
+
+        .filter-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .filter-group-label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-red);
+            color: var(--color-text-primary);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn:focus {
+            outline: 2px solid var(--color-red);
+            outline-offset: 2px;
+        }
+
+        .filter-btn.active {
+            background: var(--color-red);
+            border-color: var(--color-red);
+            color: white;
+        }
+
+        /* ========== Section Headers ========== */
+        .section-header {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 800;
+            font-size: 28px;
+            color: var(--color-text-primary);
+            margin-bottom: 24px;
+            margin-top: 48px;
+        }
+
+        /* ========== Project Cards ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 28px;
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, var(--color-red), var(--color-gold)) 1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-red);
+            box-shadow: 0 8px 32px rgba(190, 0, 0, 0.15);
+        }
+
+        .project-card.featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--color-surface), rgba(190, 0, 0, 0.04));
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .role-badge.revops {
+            background: rgba(190, 0, 0, 0.12);
+            color: var(--color-red-light);
+        }
+
+        .role-badge.adops {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--color-text-secondary);
+        }
+
+        .impact-area {
+            margin-top: 12px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+
+        .project-description {
+            margin-top: 16px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .project-description strong {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+        }
+
+        .project-bullets {
+            list-style: none;
+            padding: 0;
+            margin-top: 16px;
+        }
+
+        .project-bullets li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .project-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--color-red);
+        }
+
+        .project-bullets li strong {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        /* ========== Featured Stats ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .stat-value {
+            color: var(--color-gold);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-footnote {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* ========== Animations ========== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ========== Footer ========== */
+        .footer-container {
+            border-top: 1px solid var(--color-border);
+            padding: 40px 32px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--color-text-primary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .footer-link:hover {
+            color: var(--color-red);
+        }
+
+        .footer-link:focus {
+            outline: 2px solid var(--color-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .footer-copyright {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exp-edu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg class="film-grain" aria-hidden="true">
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+
+    <div class="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ===== STICKY HEADER ===== -->
+    <header class="header-container header-glass">
+        <div class="header-inner">
+            <h1 class="site-title">Hunter Nilsen</h1>
+            <nav aria-label="Social media links">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hunternilsen/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn profile" class="social-link">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com/hunternilsen" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub profile" class="social-link">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- ===== EXPERIENCE & EDUCATION ===== -->
+        <div class="exp-edu-grid">
+            <div class="info-card">
+                <p class="info-card-title">Experience</p>
+                <p class="company-name">Domo</p>
+                <p class="company-meta">American Fork, Utah · Full-time · 1 yr 11 mos</p>
+                <div class="timeline-item">
+                    <div class="timeline-dot current"></div>
+                    <div>
+                        <p class="timeline-role-title">RevOps Analyst</p>
+                        <p class="timeline-role-dates">Dec 2025 – Present · 3 mos</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p class="timeline-role-title">Account Development Operations Analyst</p>
+                        <p class="timeline-role-dates">Feb 2025 – Dec 2025 · 11 mos</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div>
+                        <p class="timeline-role-title">Account Development Manager</p>
+                        <p class="timeline-role-dates">Apr 2024 – Feb 2025 · 11 mos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-card">
+                <p class="info-card-title">Education</p>
+                <p class="school-name">University of Utah</p>
+                <div class="degree-item">
+                    <div class="degree-icon"></div>
+                    <div>
+                        <p class="degree-name">Master's Degree</p>
+                        <p class="degree-field">Business Analytics</p>
+                    </div>
+                </div>
+                <div class="degree-item">
+                    <div class="degree-icon"></div>
+                    <div>
+                        <p class="degree-name">Bachelor's Degree</p>
+                        <p class="degree-field">Information Systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FILTERS ===== -->
+        <section class="filter-section" aria-label="Project filters">
+            <div class="filter-groups">
+                <div>
+                    <label class="filter-group-label">Role</label>
+                    <div class="filter-buttons" role="group" aria-label="Filter by role">
+                        <button class="filter-btn active" data-filter-type="role" data-filter-value="all" aria-pressed="true">All</button>
+                        <button class="filter-btn" data-filter-type="role" data-filter-value="revops" aria-pressed="false">RevOps Analyst</button>
+                        <button class="filter-btn" data-filter-type="role" data-filter-value="adops" aria-pressed="false">AD Ops Analyst</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="filter-group-label">Category</label>
+                    <div class="filter-buttons" role="group" aria-label="Filter by category">
+                        <button class="filter-btn active" data-filter-type="category" data-filter-value="all" aria-pressed="true">All</button>
+                        <button class="filter-btn" data-filter-type="category" data-filter-value="dashboards" aria-pressed="false">Dashboards</button>
+                        <button class="filter-btn" data-filter-type="category" data-filter-value="automation" aria-pressed="false">Automation</button>
+                        <button class="filter-btn" data-filter-type="category" data-filter-value="enablement" aria-pressed="false">Enablement</button>
+                        <button class="filter-btn" data-filter-type="category" data-filter-value="strategic" aria-pressed="false">Strategic</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <div id="projects-container">
+
+            <!-- 01 — Dashboards & Data Infrastructure -->
+            <section data-category="dashboards" class="project-section">
+                <h2 class="section-header">Dashboards & Data Infrastructure</h2>
+                <div class="projects-grid">
+                    <article class="project-card" data-role="adops" data-category="dashboards">
+                        <h3 class="project-title">Pipeline Management Dashboard</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Executive Dashboard</span>
+                        </div>
+                        <p class="impact-area">Leadership Decision-Making · Pipeline Health Monitoring</p>
+                        <ul class="project-bullets">
+                            <li>Used by CMO, CRO, and RevOps leadership</li>
+                            <li>Monitors pipeline health and identifies stalled deals</li>
+                            <li>Improves deal velocity tracking</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="dashboards">
+                        <h3 class="project-title">AE Inbound Conversion Dashboard</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Leadership Dashboard</span>
+                        </div>
+                        <p class="impact-area">Sales Performance Management · Marketing Attribution</p>
+                        <ul class="project-bullets">
+                            <li>Used by CMO and RVPs for rep performance visibility</li>
+                            <li>Tracks how marketing leads are worked by individual reps</li>
+                            <li>Shows lead progression through pipeline stages</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="dashboards">
+                        <h3 class="project-title">Marketing SAL Creation Dashboard</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Executive Dashboard</span>
+                        </div>
+                        <p class="impact-area">Funnel Analysis · Gap Identification · Executive Reporting</p>
+                        <ul class="project-bullets">
+                            <li>High-visibility dashboard for CMO, CRO, and CEO</li>
+                            <li>Identified a critical gap in Marketing SAL creation pipeline</li>
+                            <li>Supports executive-level funnel analysis and reporting</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="dashboards">
+                        <h3 class="project-title">Consolidated Team & Leadership App</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Team Enablement App</span>
+                        </div>
+                        <p class="impact-area">Performance Management · Coaching · Analytics</p>
+                        <ul class="project-bullets">
+                            <li>Consolidated dozens of disparate dashboards into one app</li>
+                            <li>Quota tracking, production monitoring, and coaching</li>
+                            <li>Single cohesive analytics platform for team leadership</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 02 — Automation & Workflows -->
+            <section data-category="automation" class="project-section">
+                <h2 class="section-header">Automation & Workflows</h2>
+                <div class="projects-grid">
+                    <article class="project-card" data-role="revops" data-category="automation">
+                        <h3 class="project-title">AI Outbound Engine</h3>
+                        <div class="card-tags">
+                            <span class="role-badge revops">RevOps Analyst</span>
+                            <span class="category-tag">Automation Workflow (Apollo.io)</span>
+                        </div>
+                        <p class="impact-area">Pipeline Generation · Prospecting Automation</p>
+                        <ul class="project-bullets">
+                            <li>Built in Apollo.io with ICP definition and TAM building</li>
+                            <li>Automatically prospects and pulls contacts daily</li>
+                            <li>AI-powered personalized email cadences</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="automation">
+                        <h3 class="project-title">Clay Old Opportunity Workflow</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Automation Workflow (Gong + Clay)</span>
+                        </div>
+                        <p class="impact-area">Pipeline Creation · Sales Acceleration</p>
+                        <ul class="project-bullets">
+                            <li>Analyzes old opportunities using Gong call summaries</li>
+                            <li>Extracts use cases and pain points automatically</li>
+                            <li>Sends reps templated emails with account intelligence</li>
+                            <li>Generated 14 SALs and <strong>$90k ACV / $400k TCV closed-won</strong></li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="automation">
+                        <h3 class="project-title">SGL Bulk Upload Process</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Process Improvement</span>
+                        </div>
+                        <p class="impact-area">Operational Efficiency · Sales Ops</p>
+                        <ul class="project-bullets">
+                            <li>Saved ADMs and Sales Ops hours of manual work weekly</li>
+                            <li>Improved campaign attribution accuracy</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 03 — Team Enablement Tools & Processes -->
+            <section data-category="enablement" class="project-section">
+                <h2 class="section-header">Team Enablement Tools & Processes</h2>
+                <div class="projects-grid">
+                    <article class="project-card" data-role="revops" data-category="enablement">
+                        <h3 class="project-title">Call Review & Coaching App</h3>
+                        <div class="card-tags">
+                            <span class="role-badge revops">RevOps Analyst</span>
+                            <span class="category-tag">Coaching & AI Platform</span>
+                        </div>
+                        <p class="impact-area">Sales Coaching · Performance Improvement · Skill Development</p>
+                        <ul class="project-bullets">
+                            <li>Runs AI-based STC scores against every Gong call</li>
+                            <li>Provides reps with instant performance feedback</li>
+                            <li>Anonymous peer and leader feedback platform</li>
+                            <li>Accelerates skill development</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="revops" data-category="enablement">
+                        <h3 class="project-title">Account Mapping App</h3>
+                        <div class="card-tags">
+                            <span class="role-badge revops">RevOps Analyst</span>
+                            <span class="category-tag">Intelligence & Sales Ops</span>
+                        </div>
+                        <p class="impact-area">Org Chart Navigation · Account Intelligence · Buying Committee Mapping</p>
+                        <ul class="project-bullets">
+                            <li>Maps internal team hierarchy and org charts</li>
+                            <li>Maps external account hierarchies and engagement history</li>
+                            <li>Builds buying committees and identifies champions</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="revops" data-category="enablement">
+                        <h3 class="project-title">New ADM Comp Plan</h3>
+                        <div class="card-tags">
+                            <span class="role-badge revops">RevOps Analyst</span>
+                            <span class="category-tag">Compensation Plan Design</span>
+                        </div>
+                        <p class="impact-area">Team Motivation · Financial Modeling · Sales Incentives</p>
+                        <ul class="project-bullets">
+                            <li>Maintained same cost percentage for the business</li>
+                            <li>Drove increased incentives for ADMs</li>
+                            <li>Financial modeling and scenario analysis</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="revops" data-category="enablement">
+                        <h3 class="project-title">Market Intelligence App</h3>
+                        <div class="card-tags">
+                            <span class="role-badge revops">RevOps Analyst</span>
+                            <span class="category-tag">Intelligence Application (Jupyter)</span>
+                        </div>
+                        <p class="impact-area">C-Suite Decision-Making · Strategic Planning</p>
+                        <ul class="project-bullets">
+                            <li>Jupyter-based application for executive decision-making</li>
+                            <li>Aggregates AI updates, brand health, and competitive positioning</li>
+                            <li>Covers customer intelligence, industry trends, and market share</li>
+                            <li>Includes win/loss analysis</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="enablement">
+                        <h3 class="project-title">Commission Calculator</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Team Enablement Tool</span>
+                        </div>
+                        <p class="impact-area">Team Motivation · Compensation Transparency</p>
+                        <ul class="project-bullets">
+                            <li>Models monthly earnings and commission scenarios</li>
+                            <li>Improved ADM transparency and motivation</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="enablement">
+                        <h3 class="project-title">Account Research Agent</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Enablement Tool (Automation)</span>
+                        </div>
+                        <p class="impact-area">Sales Efficiency · Meeting Readiness</p>
+                        <ul class="project-bullets">
+                            <li>Automated pre-discovery account intelligence</li>
+                            <li>Improves meeting readiness for ADMs and Sales</li>
+                        </ul>
+                    </article>
+                    <article class="project-card" data-role="adops" data-category="enablement">
+                        <h3 class="project-title">Next Best Use Case Tool</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Team Enablement Tool</span>
+                        </div>
+                        <p class="impact-area">Upsell & Cross-sell Acceleration</p>
+                        <ul class="project-bullets">
+                            <li>Leveraged by the upsell team for expansion conversations</li>
+                            <li>Data-backed use case prioritization</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 04 — Strategic Initiatives -->
+            <section data-category="strategic" class="project-section">
+                <h2 class="section-header">Strategic Initiatives</h2>
+                <div class="projects-grid">
+                    <article class="project-card featured" data-role="adops" data-category="strategic">
+                        <h3 class="project-title">Free Trial Growth Initiative</h3>
+                        <div class="card-tags">
+                            <span class="role-badge adops">AD Ops Analyst</span>
+                            <span class="category-tag">Strategic Initiative (Cross-Functional)</span>
+                        </div>
+                        <p class="impact-area">Funnel Optimization · Revenue Growth · Product Intelligence</p>
+                        <ul class="project-bullets">
+                            <li>Led cross-functional transformation of the trial experience</li>
+                            <li>Created end-to-end lifecycle visibility</li>
+                            <li>Automated Gong transcript analysis to surface recurring objections</li>
+                        </ul>
+                        <div class="stats-grid">
+                            <div>
+                                <div class="stat-value">↑89%</div>
+                                <div class="stat-label">Onboarding Scheduling</div>
+                            </div>
+                            <div>
+                                <div class="stat-value">2×</div>
+                                <div class="stat-label">Attendance Rate</div>
+                            </div>
+                            <div>
+                                <div class="stat-value">27-32%</div>
+                                <div class="stat-label">MQL→SAL</div>
+                            </div>
+                            <div>
+                                <div class="stat-value">14→4</div>
+                                <div class="stat-label">Days to Onboarding</div>
+                            </div>
+                        </div>
+                        <p class="featured-footnote">Two of the best months since the Freemium drop occurred after these changes.</p>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <p class="footer-name">Hunter Nilsen</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/hunternilsen/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+                <a href="https://github.com/hunternilsen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+            </div>
+            <p class="footer-copyright">&copy; <span id="current-year"></span> Hunter Nilsen</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

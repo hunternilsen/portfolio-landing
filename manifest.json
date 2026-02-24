@@ -1,0 +1,28 @@
+{
+    "id": "5be303f1-3289-4c57-acf0-e5c0d07f2e27",
+    "name": "Hunter Nilsen — Interactive Resume",
+    "description": "Interactive resume showcasing RevOps and AD Ops projects at Domo.",
+    "version": "0.0.1",
+    "draft": false,
+    "publicAssetsEnabled": true,
+    "flags": {},
+    "scopes": [],
+    "datasetsMapping": [],
+    "collectionsMapping": [],
+    "databasesMapping": null,
+    "accountsMapping": null,
+    "actionsMapping": null,
+    "workflowsMapping": null,
+    "packagesMapping": null,
+    "size": {
+        "width": 1,
+        "height": 1
+    },
+    "fullpage": true,
+    "aiContextId": null,
+    "allowGeolocation": false,
+    "allowCamera": false,
+    "allowMic": false,
+    "allowBluetooth": false,
+    "allowNFC": false
+}
