@@ -1,7 +1,7 @@
 # Interactive Project Portfolio
 
 ## Overview
-Single-page interactive resume/portfolio for Hunter Nilsen. Static HTML/CSS/JS — no build step, no framework.
+Single-page interactive project portfolio for Hunter Nilsen. Static HTML/CSS/JS — no build step, no framework.
 
 ## File Structure
 - `index.html` — Main page. All CSS is inline in a `<style>` block. References `app.js` externally.
