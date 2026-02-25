@@ -205,6 +205,267 @@ window.PROJECT_DATA = [
       solution: "Built an AI-powered coaching platform that automatically runs STC scores against every Gong call, provides instant performance feedback, and enables anonymous peer and leader reviews.",
       building: "Details coming soon — describe the technology stack, tools used, and your specific contributions.",
       results: "Enabled consistent, data-driven coaching across the entire team, accelerating skill development through instant feedback and anonymous review mechanisms."
+    },
+    richDetail: {
+      subtitle: "Call Review app to score, track, and improve sales team\u2019s performance with the STC framework.",
+      heroStats: [
+        { value: "196", label: "Commits" },
+        { value: "7,800", label: "Lines of Code" },
+        { value: "8", label: "Modular Components" }
+      ],
+      sections: [
+        {
+          type: "features",
+          overline: "Overview",
+          title: "Why COMINT?",
+          subtitle: "Gives leaders and reps visibility into skill gaps and coaching opportunities.",
+          cards: [
+            { icon: "\uD83D\uDD0D", title: "Standardized Scoring", description: "Every call scored on the same 9-category STC framework. No more subjective, inconsistent feedback across reviewers." },
+            { icon: "\uD83D\uDCCA", title: "Aggregated Dashboards", description: "See rep-level and team-level score trends over time. Identify who needs coaching and where the gaps are." },
+            { icon: "\uD83C\uDFC6", title: "Top Performers", description: "Surface the best calls and highest-scoring reps so new hires can learn from real examples of excellence." },
+            { icon: "\uD83E\uDD16", title: "AI + Human Reviews", description: "Three review types work together: Leadership, Peer, and automated AI scoring for complete coverage." },
+            { icon: "\uD83D\uDD12", title: "Role-Based Access", description: "Leaders see all reps and full reviewer names. Reps see their own calls with anonymized peer feedback." },
+            { icon: "\u26A1", title: "Built on Domo", description: "Runs natively in Domo with AppDB storage and dataset syncing. No external tools or infrastructure needed." }
+          ]
+        },
+        {
+          type: "three-col",
+          overline: "Review Types",
+          title: "Three Types of Reviews",
+          subtitle: "Each review type provides a unique perspective on call quality.",
+          cards: [
+            { icon: "\uD83D\uDC64", title: "Leadership", description: "Managers and directors review calls to set standards and identify coaching opportunities." },
+            { icon: "\uD83D\uDC65", title: "Peer", description: "Reps review each other\u2019s calls. Anonymized in the dashboard to encourage honest feedback." },
+            { icon: "\uD83E\uDD16", title: "AI-Generated", description: "Automated daily scoring via LLM analysis of call transcripts. Ensures every call gets baseline coverage." }
+          ]
+        },
+        {
+          type: "compare",
+          overline: "Impact",
+          title: "Before & After COMINT",
+          headers: ["Capability", "Before COMINT", "With COMINT"],
+          rows: [
+            ["Call review consistency", "Ad hoc, varies by manager", "Standardized 9-category STC scoring"],
+            ["Skill gap identification", "Gut feel, quarterly", "Real-time dashboard with category breakdowns"],
+            ["Peer learning", "Informal shadowing", "Top Performers section, anonymized peer reviews"],
+            ["Review coverage", "~5% of calls reviewed", "AI scores every call, humans review strategically"],
+            ["New hire ramp time", "Learn by trial and error", "Study top-rated calls across every STC category"]
+          ]
+        },
+        {
+          type: "workflow",
+          overline: "Workflow",
+          title: "How COMINT Works",
+          subtitle: "From opening the app to submitting your first review in under 5 minutes.",
+          steps: [
+            { label: "Open COMINT", sublabel: "in Domo" },
+            { label: "Pick a Call", sublabel: "from the queue" },
+            { label: "Listen & Score", sublabel: "9 STC categories" },
+            { label: "Submit Review", sublabel: "scores + comments" },
+            { label: "View Dashboard", sublabel: "track progress" }
+          ]
+        },
+        {
+          type: "steps",
+          overline: "Guide",
+          title: "Getting Started",
+          subtitle: "Five steps from queue to dashboard.",
+          items: [
+            { title: "Open the Review Queue", description: "The queue shows all available calls filtered by your role. Leaders see all reps; reps see their own calls for peer review. Use column filters to narrow by account, rep, stage, date, or duration." },
+            { title: "Select a Call to Review", description: "Click any row to open the call workspace with the Gong player on the left and the review form on the right. The Gong player requires Okta SSO \u2014 if it shows a login prompt, click the login button and the app will automatically reload the player when you return." },
+            { title: "Listen and Score", description: "Play the Gong recording while filling out the review form. Score each of the 9 STC categories from 0\u20135 and optionally add comments. The overall score calculates automatically as the average." },
+            { title: "Submit Your Review", description: "Hit submit. Your review is saved to the AppDB collection and automatically synced to the dashboard dataset. A success toast confirms the submission and you return to the queue." },
+            { title: "Check the Dashboard", description: "Switch to the User Dashboard to see aggregated scores, KPI cards for each STC category, score trends over time, and the Top Performers section. Filter by rep, account, date range, or review type." }
+          ]
+        },
+        {
+          type: "rubric",
+          overline: "Scoring Framework",
+          title: "The STC Rubric",
+          subtitle: "Each category is scored 0\u20135. Click any category to see the scoring criteria.",
+          scoreNote: "The overall score is the average of all 9 categories. Scores below 3.0 are flagged for coaching, 3.0\u20133.9 indicate solid performance, and 4.0+ represents excellence.",
+          categories: [
+            {
+              title: "Current Situation",
+              description: "Did the rep explore where the prospect is today with genuine curiosity?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Genuine curiosity with broad, open-ended questions that let the prospect describe their world.", example: "Could you walk me through a typical day or week in your role?" },
+                { level: "mid", scores: "2\u20133", content: "Decent but surface-level questions \u2014 gets the \u201Cwhat\u201D but not the \u201Chow\u201D or \u201Cwhy.\u201D", example: "What are your top 3 priorities this quarter?" },
+                { level: "low", scores: "0\u20131", content: "Closed-ended or leading questions, or jumps directly to problems without exploration.", example: "So, are you struggling with lead generation?" }
+              ]
+            },
+            {
+              title: "Call Preparedness",
+              description: "Did the rep\u2019s questions show specific research into the customer\u2019s company or industry?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Questions show specific research into the customer\u2019s company, industry, or recent news.", example: "I saw your CEO\u2019s recent article on sustainability \u2014 how does that initiative impact your team\u2019s goals?" },
+                { level: "mid", scores: "2\u20133", content: "Basic research (knows company name/product) but lacks deeper insights into their specific situation.", example: "Since you\u2019re in the software industry, are you seeing X trend?" },
+                { level: "low", scores: "0\u20131", content: "The call felt generic with no evidence of any research or preparation.", example: "So, tell me what your company does." }
+              ]
+            },
+            {
+              title: "Problem Defined",
+              description: "Did the rep co-create the problem definition and guide the prospect to an \u201Caha\u201D moment?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Rep co-creates the problem definition, guiding the prospect to articulate the root cause themselves.", example: "That\u2019s a good point \u2014 I guess the real problem isn\u2019t just the slow reports, it\u2019s that we don\u2019t trust the data." },
+                { level: "mid", scores: "2\u20133", content: "A problem is identified, but stays at surface level without exploring the root cause.", example: "Customer: \u201COur reporting is a mess.\u201D Rep: \u201COkay, so messy reporting is the main issue.\u201D" },
+                { level: "low", scores: "0\u20131", content: "Rep accepts a vague symptom or immediately pitches a solution without defining the real problem.", example: "Customer: \u201COur reporting is slow.\u201D Rep: \u201CGreat, our product is super fast!\u201D" }
+              ]
+            },
+            {
+              title: "Impact",
+              description: "Did the rep guide the customer to articulate the quantifiable business impact of the problem?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Rep successfully guides the customer to articulate quantifiable negative consequences in business terms.", example: "What\u2019s the cost in man-hours per week when your team has to manually fix those data errors?" },
+                { level: "mid", scores: "2\u20133", content: "Discusses qualitative impact (\u201Cthat must be frustrating\u201D) but fails to quantify in business terms.", example: "How does that frustration affect team morale?" },
+                { level: "low", scores: "0\u20131", content: "Rep ignores the impact or minimizes the pain, moving on without exploring consequences.", example: "Customer: \u201CIt\u2019s a huge headache.\u201D Rep: \u201COkay. Anyway\u2026\u201D" }
+              ]
+            },
+            {
+              title: "Ideal",
+              description: "Did the rep get the prospect to describe their own ideal future state?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Uses \u201Cmagic wand\u201D or vision-oriented questions to get the prospect to describe their own desired outcomes.", example: "If you could wave a magic wand and design the perfect process from scratch, what would it look like?" },
+                { level: "mid", scores: "2\u20133", content: "Leads the witness by framing the ideal state around their own product instead of the prospect\u2019s vision.", example: "What if you had a dashboard that showed you all these metrics in real-time?" },
+                { level: "low", scores: "0\u20131", content: "Pitches their own product as the ideal solution instead of asking, or skips this step entirely.", example: "Let me show you what the future could look like with our platform." }
+              ]
+            },
+            {
+              title: "Benefit",
+              description: "Did the rep connect discovery findings to outcomes the prospect can internalize?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Reframes features into outcome-oriented questions, forcing the prospect to internalize the value.", example: "You mentioned your team spends 20 hours a week on this. What would they do with that extra time?" },
+                { level: "mid", scores: "2\u20133", content: "States a logical benefit but fails to explicitly connect it back to a pain the customer mentioned.", example: "This will help your team be more efficient." },
+                { level: "low", scores: "0\u20131", content: "Feature-dumps or states generic benefits disconnected from the conversation.", example: "Our platform has 500+ connectors, AI-powered analytics, and real-time dashboards." }
+              ]
+            },
+            {
+              title: "Layering",
+              description: "Did the rep use follow-up questions to peel back layers from operational to strategic?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Uses simple follow-up questions to peel back multiple layers, moving from operational to strategic impact.", example: "Tell me more about that.\u201D \u2026 \u201CWhat\u2019s the consequence of that when it happens?" },
+                { level: "mid", scores: "2\u20133", content: "Asks one level of follow-up but stops there instead of continuing to dig deeper.", example: "Customer: \u201CThe report is slow.\u201D Rep: \u201CWhy is that an issue?\u201D Customer: \u201CIt delays our meetings.\u201D Rep: \u201COkay.\u201D" },
+                { level: "low", scores: "0\u20131", content: "Accepts the first answer at face value and moves on without probing deeper at all.", example: "Customer: \u201CIt\u2019s slow.\u201D Rep: \u201CGot it. Next question\u2026\u201D" }
+              ]
+            },
+            {
+              title: "Demo Preparedness",
+              description: "Was the discovery rich enough to deliver a customized, compelling demo?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Discovery was so rich the rep can deliver a highly customized demo framed as a compelling story.", example: "Based on what you told me about X, I\u2019m going to show you exactly how we can solve that." },
+                { level: "mid", scores: "2\u20133", content: "Gathered enough info for a partially customized demo, but it lacks deep context from the conversation.", example: "I\u2019ll show you our reporting module since you mentioned reports." },
+                { level: "low", scores: "0\u20131", content: "Discovery was poor, forcing any demo to be a generic \u201Cspray and pray\u201D presentation.", example: "Let me walk you through all of our features\u2026" }
+              ]
+            },
+            {
+              title: "Quantified Value",
+              description: "Did the rep tie Domo\u2019s value to measurable business outcomes?",
+              tiers: [
+                { level: "high", scores: "4\u20135", content: "Rep ties Domo\u2019s value to specific, measurable outcomes using numbers from the conversation.", example: "If we cut that 20-hour weekly process to 2 hours, that\u2019s $180K in annual savings for your team alone." },
+                { level: "mid", scores: "2\u20133", content: "References value in general terms but doesn\u2019t anchor to specific numbers from discovery.", example: "Customers typically see significant time savings with Domo." },
+                { level: "low", scores: "0\u20131", content: "No attempt to quantify value, or uses only generic ROI claims disconnected from the prospect\u2019s situation.", example: "Domo delivers 10x ROI for our customers." }
+              ]
+            }
+          ]
+        },
+        {
+          type: "features",
+          overline: "Platform",
+          title: "Built on Domo Pro-Code",
+          subtitle: "Custom HTML/JS/CSS applications that run inside Domo\u2019s environment with direct access to platform APIs.",
+          cards: [
+            { icon: "\uD83D\uDDA5\uFE0F", title: "Client-Side App", description: "Runs entirely client-side inside Domo\u2019s environment. No server, no SSR, no build step \u2014 just static HTML, JS, and CSS files." },
+            { icon: "\uD83D\uDDC3\uFE0F", title: "AppDB Collections", description: "A NoSQL document store built into Domo. Reviews stored with a 21-field schema. Collections auto-sync to datasets." },
+            { icon: "\uD83D\uDCCA", title: "Datasets & SQL", description: "SQL-queryable reads from a pre-joined dataset. Filters across thousands of records efficiently." },
+            { icon: "\uD83D\uDE80", title: "Deploy Pipeline", description: "Development uses domo dev with a local proxy. Production deploys via domo publish \u2014 no CI/CD pipeline needed." }
+          ]
+        },
+        {
+          type: "tech",
+          overline: "Tech Stack",
+          title: "Zero Dependencies, Maximum Simplicity",
+          subtitle: "No build step, no bundler, no node_modules. Just vanilla JavaScript served through Domo\u2019s CDN.",
+          items: [
+            { icon: "\u26A1", title: "Vanilla JavaScript", description: "ES Modules, no framework" },
+            { icon: "\uD83C\uDFA8", title: "TailwindCSS v4", description: "Utility classes via CDN" },
+            { icon: "\uD83D\uDCC8", title: "Chart.js", description: "Scores Over Time visualization" },
+            { icon: "\uD83D\uDDC3\uFE0F", title: "Domo AppDB", description: "NoSQL write storage + sync" },
+            { icon: "\uD83D\uDCCA", title: "Domo Datasets", description: "SQL reads, pre-joined data" },
+            { icon: "\uD83C\uDF99\uFE0F", title: "Gong Embedded", description: "iframe call player + Okta SSO" },
+            { icon: "\uD83E\uDD16", title: "Domo Jupyter", description: "LLM-powered AI review pipeline" },
+            { icon: "\uD83D\uDE80", title: "Domo Pro-Code", description: "Platform hosting + deployment" }
+          ]
+        },
+        {
+          type: "timeline",
+          overline: "Build Process",
+          title: "From Concept to Production",
+          subtitle: "Six phases of iterative development \u2014 from blank repo to production app.",
+          items: [
+            { phase: "Phase 1", title: "Prototype & Core Features", description: "Built the initial single-page app with review queue, Gong integration, 9-category scoring form, and AppDB persistence.", pills: ["SPA Architecture", "Gong iframe", "AppDB CRUD", "Scoring Form"] },
+            { phase: "Phase 2", title: "Dashboard & Analytics", description: "Added the User Dashboard with STC KPI cards, Scores Over Time chart (Chart.js), Top Performers section, and role-based access control. Introduced team benchmark overlays from a separate dataset.", pills: ["Chart.js", "KPI Cards", "RBAC", "Team Benchmarks"] },
+            { phase: "Phase 3", title: "AI Review Pipeline", description: "Created a Domo Jupyter notebook that uses an LLM to score every Gong call against the STC rubric automatically. Runs daily, writes AI reviews to the same AppDB collection as human reviews.", pills: ["Domo Jupyter", "LLM Scoring", "Prompt Engineering", "Automation"] },
+            { phase: "Phase 4", title: "Reviewed Calls & Polish", description: "Built the Reviewed Calls tab with sortable columns, review carousel navigation, inline filters, and context-aware form behavior.", pills: ["Sortable Tables", "Filter Cache", "Context Awareness", "Subtab Toggle"] },
+            { phase: "Phase 5", title: "Architecture Refactor", description: "The monolithic 3,445-line app.js was split into 8 focused ES modules with dependency injection. Zero regressions during the split.", pills: ["ES Modules", "Dependency Injection", "Zero Regressions"] },
+            { phase: "Phase 6", title: "Documentation & Landing Page", description: "Created comprehensive CLAUDE.md project context, README, and a landing page \u2014 all through the same conversational workflow.", pills: ["CLAUDE.md", "Events Template", "Domo Design Language"] }
+          ]
+        },
+        {
+          type: "modules",
+          overline: "Architecture",
+          title: "Application Architecture",
+          subtitle: "8 focused modules, each owning one concern. app.js orchestrates initialization and view switching.",
+          items: [
+            { name: "state.js", lines: "70", description: "Centralized application state" },
+            { name: "config.js", lines: "99", description: "Constants, dataset IDs, STC names" },
+            { name: "utils.js", lines: "246", description: "Formatting, toasts, colors, dates" },
+            { name: "api.js", lines: "189", description: "Domo API data loading functions" },
+            { name: "queue.js", lines: "410", description: "Call list, filters, cache" },
+            { name: "reviewed.js", lines: "640", description: "Reviewed calls table, sort, subtabs" },
+            { name: "workspace.js", lines: "918", description: "Gong player, review form, submission" },
+            { name: "dashboard.js", lines: "616", description: "Scores, charts, Top Performers" }
+          ],
+          depFlow: [
+            { from: "app.js", to: "initWorkspace(showView, renderQueue, invalidateCache)" },
+            { from: "app.js", to: "initQueue(openCallReview)" },
+            { from: "app.js", to: "initReviewed(openCallReview)" }
+          ]
+        },
+        {
+          type: "callout",
+          title: "No Circular Dependencies",
+          content: "Modules that need functions from the orchestrator (like showView()) receive them through dependency injection at startup. Each module exports an init() function that stores injected references in a module-level variable \u2014 keeping the import graph clean and acyclic."
+        },
+        {
+          type: "data-architecture",
+          overline: "Data Design",
+          title: "Dual Read Architecture",
+          subtitle: "Writes go to AppDB for speed; reads come from a pre-joined dataset for efficiency. The two stay in sync automatically.",
+          tiers: [
+            { label: "Write", color: "accent", items: [{ title: "Review Form", detail: "9 STC scores + comments" }, { title: "AppDB Collection", detail: "21 fields, snake_case" }] },
+            { label: "Sync", color: "muted", items: [{ title: "Auto-Sync", detail: "syncEnabled: true" }] },
+            { label: "Read", color: "green", items: [{ title: "AppDB Direct", detail: "Queue: myReviews (user-scoped)" }, { title: "Pre-Joined Dataset", detail: "Dashboard: callReviews (all, camelCase)" }] }
+          ],
+          metrics: [
+            { value: "21", label: "Schema Fields" },
+            { value: "3", label: "Datasets" },
+            { value: "1", label: "Collection" }
+          ]
+        },
+        {
+          type: "pipeline",
+          overline: "AI Pipeline",
+          title: "How AI Reviews Work",
+          subtitle: "Every call gets scored automatically by an LLM running on a daily schedule inside Domo\u2019s Jupyter environment.",
+          stages: [
+            { icon: "\uD83C\uDF99\uFE0F", title: "Gong Records", description: "Call audio & transcript captured automatically" },
+            { icon: "\uD83D\uDCC4", title: "Domo Connector", description: "Syncs call metadata & transcripts to dataset" },
+            { icon: "\uD83E\uDD16", title: "Jupyter + LLM", description: "Scores each category 0\u20135 with reasoning" },
+            { icon: "\uD83D\uDCBE", title: "AppDB Write", description: "Saves review with scores & comments" },
+            { icon: "\uD83D\uDCCA", title: "Dashboard", description: "AI reviews appear alongside human reviews" }
+          ]
+        }
+      ]
     }
   },
   {
