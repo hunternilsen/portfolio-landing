@@ -1,26 +1,37 @@
-# Interactive Project Portfolio
+# Portfolio — Hunter Nilsen
 
 ## Overview
-Single-page interactive project portfolio for Hunter Nilsen. Static HTML/CSS/JS — no build step, no framework.
+Single-page portfolio with hash-based routing for project detail pages. Static HTML/CSS/JS — no build step, no framework.
 
 ## File Structure
-- `index.html` — Main page. All CSS is inline in a `<style>` block. References `app.js` externally.
-- `app.js` — Client-side JS: role/category filtering, scroll progress bar, IntersectionObserver fade-in animations.
-- `projects.md` — Source of truth for all content (experience, education, 15 projects with roles, tags, impact areas, key results).
+- `index.html` — Main page with home view and detail view container. Links external CSS/JS.
+- `styles.css` — All styles: design tokens, layout, components, responsive breakpoints.
+- `app.js` — Hash router, filtering, scroll progress, IntersectionObserver, mobile nav.
+- `project-data.js` — Structured data for all 15 projects (title, summary, detail sections).
+- `projects.md` — Source of truth for content (experience, education, 15 projects with roles, tags, key results).
+- `Headshot.jpg` — Professional headshot used in About section.
 - `manifest.json` — Domo Custom App manifest (needed if deploying inside Domo).
 
 ## Design System
-- **Theme:** Dark mode, University of Utah colors
-- **Colors:** Utah Red `#BE0000`, Gold `#FFB81D`, Deep Red `#890000`, Gray `#707271`, BG `#0A0A0C`, Surface `#151517`
-- **Fonts:** Playfair Display (headings, 700/800) + DM Sans (body, 400/500/600) via Google Fonts
-- **Cards:** Dark surface bg, left red-to-gold gradient border, hover lift + glow
-- **Layout:** Responsive grid — 3 columns desktop, 2 tablet, 1 mobile
+- **Theme:** Light mode, clean professional
+- **Colors:** Background `#FFFFFF`, Text `#212121`, Accent Red `#DC2626`, Secondary Gray `#6B7280`, Surface `#F3F4F6`
+- **Fonts:** Inter (headings, 600/700) + Lato (body, 400/500) via Google Fonts
+- **Cards:** Light gray bg, soft shadow, 10px border-radius, hover lift
+- **Layout:** Responsive grid — 3 columns desktop, 2 tablet, 1 mobile. Max-width 1100px.
+
+## Routing
+- `#/` or empty hash → Home view (about, experience, projects grid)
+- `#/project/{slug}` → Project detail view (rendered dynamically from `project-data.js`)
+- Browser back/forward supported via `hashchange` listener
+- Home scroll position preserved when navigating to/from detail views
 
 ## Key Patterns
 - Filters use `data-role` and `data-category` attributes on `.project-card` elements
 - `data-filter-type` and `data-filter-value` on `.filter-btn` elements drive filtering
-- Sections auto-hide when all their cards are filtered out (`updateSectionVisibility`)
+- `data-slug` on cards matches project slugs in `project-data.js`
+- Category sections auto-hide when all cards are filtered out
 - The Free Trial Growth Initiative card has class `.featured` (full-width, stats grid)
+- Project detail views built with safe DOM methods (createElement/textContent)
 - Respects `prefers-reduced-motion`
 
 ## Deployment
@@ -29,8 +40,12 @@ Single-page interactive project portfolio for Hunter Nilsen. Static HTML/CSS/JS 
 - Also deployable as a Domo Custom App via `manifest.json`
 
 ## Content Updates
-When adding or editing projects, update both `projects.md` and `index.html`. Each card needs:
-- `data-role` attribute (`revops` or `adops`)
-- `data-category` attribute (`dashboards`, `automation`, `enablement`, or `strategic`)
-- Role badge with matching class (`.role-badge.revops` or `.role-badge.adops`)
-- Category tag from the project's Tags field in `projects.md`
+When adding or editing projects, update `projects.md`, `project-data.js`, and `index.html`:
+- `project-data.js`: Add/edit the project object (slug, title, role, category, tags, summary, detail sections)
+- `index.html`: Add/edit the project card in the appropriate category section with matching `data-slug`, `data-role`, `data-category`
+- `projects.md`: Update the source-of-truth content
+- Each card needs: `data-role` (`revops`/`adops`), `data-category` (`dashboards`/`automation`/`enablement`/`strategic`), `data-slug`, role badge, category tag, summary, "View Project" link
+
+## Future Improvements
+- **Rich detail pages (Option 4):** Port COMINT landing page structure (`/Users/hunternilsen/Documents/Domo/VS Code/comint/landing.html`) into native portfolio detail pages. Adapt the COMINT template's sections (hero, stats row, workflow diagram, feature cards, expandable rubrics) to use the portfolio's light theme and Inter/Lato typography. This replaces the current placeholder detail content with COMINT-quality pages for each project.
+- **Fill in project detail content:** All 15 projects in `project-data.js` have placeholder text in their `detail` fields (problem, solution, building, results). Replace with real content.

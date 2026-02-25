@@ -1,995 +1,580 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Hunter Nilsen — Interactive Project Portfolio. RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
-    <meta property="og:title" content="Hunter Nilsen — Interactive Project Portfolio">
-    <meta property="og:description" content="RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
+        content="Hunter Nilsen — RevOps Analyst building dashboards, automation workflows, and enablement tools that drive measurable business impact at Domo.">
+    <meta property="og:title" content="Hunter Nilsen — Portfolio">
+    <meta property="og:description"
+        content="RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hunternilsen.github.io/portfolio-landing/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Hunter Nilsen — Interactive Project Portfolio">
-    <meta name="twitter:description" content="RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
-    <title>Hunter Nilsen — Interactive Project Portfolio</title>
+    <meta name="twitter:title" content="Hunter Nilsen — Portfolio">
+    <meta name="twitter:description"
+        content="RevOps & AD Ops projects showcasing dashboards, automation, team enablement, and strategic initiatives at Domo.">
+    <title>Hunter Nilsen — Portfolio</title>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23BE0000'/><text x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>HN</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23DC2626'/><text x='50' y='68' font-family='Inter,sans-serif' font-size='48' font-weight='bold' fill='white' text-anchor='middle'>HN</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* U of U Core Palette */
-            --color-red: #BE0000;
-            --color-red-dark: #890000;
-            --color-red-light: #D93333;
-            --color-gold: #FFB81D;
-            --color-gray: #707271;
-
-            /* Dark Mode Surface */
-            --color-bg: #0A0A0C;
-            --color-surface: #151517;
-            --color-surface-raised: #1C1C1F;
-
-            /* Text */
-            --color-text-primary: #F0F0F0;
-            --color-text-secondary: #8E8E93;
-
-            /* Borders */
-            --color-border: rgba(255, 255, 255, 0.07);
-            --color-border-hover: rgba(190, 0, 0, 0.4);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 88px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--color-red), var(--color-gold));
-            width: 0%;
-            z-index: 10000;
-            transition: width 0.1s ease-out;
-        }
-
-        /* ========== Header ========== */
-        .header-glass {
-            background: rgba(21, 21, 23, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--color-border);
-        }
-
-        .header-container {
-            position: sticky;
-            top: 16px;
-            margin: 16px auto;
-            max-width: 1400px;
-            border-radius: 16px;
-            z-index: 1000;
-        }
-
-        .header-inner {
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 32px;
-        }
-
-        .site-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--color-text-primary);
-            letter-spacing: 0.01em;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-link {
-            color: var(--color-text-secondary);
-            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .social-link:hover {
-            color: var(--color-red);
-        }
-
-        .social-link:focus {
-            outline: 2px solid var(--color-red);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        /* ========== Section Nav ========== */
-        .section-nav {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-link {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 6px 14px;
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-link:hover {
-            color: var(--color-text-primary);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .nav-link:focus {
-            outline: 2px solid var(--color-red);
-            outline-offset: 2px;
-            border-radius: 20px;
-        }
-
-        /* ========== Main Content ========== */
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 32px 80px;
-        }
-
-        /* ========== Experience & Education ========== */
-        .exp-edu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 32px;
-            margin-bottom: 48px;
-        }
-
-        .info-card {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 14px;
-            padding: 28px;
-        }
-
-        .info-card-title {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 600;
-            font-size: 11px;
-            color: var(--color-text-secondary);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .company-name {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--color-text-primary);
-        }
-
-        .company-meta {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 14px;
-            padding: 10px 0;
-            position: relative;
-        }
-
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 30px;
-            bottom: -10px;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .timeline-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--color-gray);
-            margin-top: 5px;
-            flex-shrink: 0;
-        }
-
-        .timeline-dot.current {
-            background: var(--color-red);
-            box-shadow: 0 0 10px rgba(190, 0, 0, 0.5);
-        }
-
-        .timeline-role-title {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--color-text-primary);
-        }
-
-        .timeline-role-dates {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-        }
-
-        .school-name {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--color-text-primary);
-            margin-bottom: 12px;
-        }
-
-        .degree-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-        }
-
-        .degree-icon {
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            background: var(--color-red);
-            flex-shrink: 0;
-        }
-
-        .degree-name {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--color-text-primary);
-        }
-
-        .degree-field {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-        }
-
-        /* ========== Filters ========== */
-        .filter-section {
-            margin-top: 40px;
-            margin-bottom: 48px;
-        }
-
-        .filter-groups {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-        }
-
-        .filter-group-label {
-            display: block;
-            margin-bottom: 12px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--color-text-secondary);
-            font-weight: 600;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .filter-btn {
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: transparent;
-            color: var(--color-text-secondary);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .filter-btn:hover {
-            border-color: var(--color-red);
-            color: var(--color-text-primary);
-            transform: translateY(-1px);
-        }
-
-        .filter-btn:focus {
-            outline: 2px solid var(--color-red);
-            outline-offset: 2px;
-        }
-
-        .filter-btn.active {
-            background: var(--color-red);
-            border-color: var(--color-red);
-            color: white;
-        }
-
-        /* ========== Section Headers ========== */
-        .section-header {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 800;
-            font-size: 28px;
-            color: var(--color-text-primary);
-            margin-bottom: 24px;
-            margin-top: 48px;
-        }
-
-        /* ========== Project Cards ========== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .project-card {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 14px;
-            padding: 28px;
-            border-left: 4px solid;
-            border-image: linear-gradient(to bottom, var(--color-red), var(--color-gold)) 1;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--color-red);
-            box-shadow: 0 8px 32px rgba(190, 0, 0, 0.15);
-        }
-
-        .project-card.featured {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, var(--color-surface), rgba(190, 0, 0, 0.04));
-        }
-
-        .project-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: 22px;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .role-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .role-badge.revops {
-            background: rgba(190, 0, 0, 0.12);
-            color: var(--color-red-light);
-        }
-
-        .role-badge.adops {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--color-text-secondary);
-        }
-
-        .impact-area {
-            margin-top: 12px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            font-weight: 600;
-        }
-
-        .project-description {
-            margin-top: 16px;
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-        }
-
-        .project-description strong {
-            color: var(--color-gold);
-            font-weight: 600;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .category-tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--color-text-secondary);
-            border: 1px solid var(--color-border);
-        }
-
-        .project-bullets {
-            list-style: none;
-            padding: 0;
-            margin-top: 16px;
-        }
-
-        .project-bullets li {
-            position: relative;
-            padding-left: 16px;
-            margin-bottom: 6px;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .project-bullets li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--color-red);
-        }
-
-        .project-bullets li strong {
-            color: var(--color-gold);
-            font-weight: 600;
-        }
-
-        /* ========== Featured Stats ========== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .stat-value {
-            color: var(--color-gold);
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            color: var(--color-text-secondary);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .featured-footnote {
-            font-size: 14px;
-            font-style: italic;
-            color: var(--color-text-secondary);
-            margin-top: 16px;
-            padding-top: 12px;
-            border-top: 1px solid var(--color-border);
-        }
-
-        /* ========== Animations ========== */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* ========== Footer ========== */
-        .footer-container {
-            border-top: 1px solid var(--color-border);
-            padding: 40px 32px;
-            text-align: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .footer-name {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: 16px;
-            color: var(--color-text-primary);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-link {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .footer-link:hover {
-            color: var(--color-red);
-        }
-
-        .footer-link:focus {
-            outline: 2px solid var(--color-red);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        .footer-copyright {
-            color: var(--color-text-secondary);
-            font-size: 13px;
-        }
-
-        /* ========== Responsive ========== */
-        @media (max-width: 992px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .exp-edu-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .main-content {
-                padding: 0 16px 60px;
-            }
-
-            .header-inner {
-                padding: 0 16px;
-            }
-
-            .header-container {
-                margin: 8px 8px;
-            }
-
-            .section-nav {
-                display: none;
-            }
-
-            .footer-container {
-                padding: 32px 16px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Scroll Progress -->
     <div class="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100"></div>
 
-    <!-- ===== STICKY HEADER ===== -->
-    <header class="header-container header-glass">
+    <!-- Route Announcer -->
+    <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
         <div class="header-inner">
-            <h1 class="site-title">Hunter Nilsen</h1>
-            <nav class="section-nav" aria-label="Page sections">
-                <a href="#dashboards" class="nav-link">Dashboards</a>
-                <a href="#automation" class="nav-link">Automation</a>
-                <a href="#enablement" class="nav-link">Enablement</a>
-                <a href="#strategic" class="nav-link">Strategic</a>
-            </nav>
-            <nav aria-label="Social media links">
-                <div class="social-links">
+            <div class="header-name"><a href="#/">Hunter Nilsen</a></div>
+
+            <div class="header-right">
+                <nav class="header-nav" aria-label="Page sections">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                </nav>
+
+                <div class="header-social">
                     <a href="https://www.linkedin.com/in/hunternilsen/" target="_blank" rel="noopener noreferrer"
-                        aria-label="LinkedIn profile" class="social-link">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        aria-label="LinkedIn profile">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                     </a>
                     <a href="https://github.com/hunternilsen" target="_blank" rel="noopener noreferrer"
-                        aria-label="GitHub profile" class="social-link">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        aria-label="GitHub profile">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
                     </a>
                 </div>
-            </nav>
+
+                <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+            </div>
         </div>
+
+        <!-- Mobile Nav -->
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+        </nav>
     </header>
 
-    <main class="main-content">
+    <!-- ===== HOME VIEW ===== -->
+    <div id="view-home">
+        <main id="main">
 
-        <!-- ===== EXPERIENCE & EDUCATION ===== -->
-        <div class="exp-edu-grid">
-            <div class="info-card">
-                <p class="info-card-title">Experience</p>
-                <p class="company-name">Domo</p>
-                <p class="company-meta">American Fork, Utah · Full-time · 1 yr 11 mos</p>
-                <div class="timeline-item">
-                    <div class="timeline-dot current"></div>
-                    <div>
-                        <p class="timeline-role-title">RevOps Analyst</p>
-                        <p class="timeline-role-dates">Dec 2025 – Present · 3 mos</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div>
-                        <p class="timeline-role-title">Account Development Operations Analyst</p>
-                        <p class="timeline-role-dates">Feb 2025 – Dec 2025 · 11 mos</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div>
-                        <p class="timeline-role-title">Account Development Manager</p>
-                        <p class="timeline-role-dates">Apr 2024 – Feb 2025 · 11 mos</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-card">
-                <p class="info-card-title">Education</p>
-                <p class="school-name">University of Utah</p>
-                <div class="degree-item">
-                    <div class="degree-icon"></div>
-                    <div>
-                        <p class="degree-name">Master's Degree</p>
-                        <p class="degree-field">Business Analytics</p>
-                    </div>
-                </div>
-                <div class="degree-item">
-                    <div class="degree-icon"></div>
-                    <div>
-                        <p class="degree-name">Bachelor's Degree</p>
-                        <p class="degree-field">Information Systems</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== FILTERS ===== -->
-        <section class="filter-section" aria-label="Project filters">
-            <div class="filter-groups">
-                <div>
-                    <label class="filter-group-label">Role</label>
-                    <div class="filter-buttons" role="group" aria-label="Filter by role">
-                        <button type="button" class="filter-btn active" data-filter-type="role" data-filter-value="all" aria-pressed="true">All</button>
-                        <button type="button" class="filter-btn" data-filter-type="role" data-filter-value="revops" aria-pressed="false">RevOps Analyst</button>
-                        <button type="button" class="filter-btn" data-filter-type="role" data-filter-value="adops" aria-pressed="false">AD Ops Analyst</button>
-                    </div>
-                </div>
-                <div>
-                    <label class="filter-group-label">Category</label>
-                    <div class="filter-buttons" role="group" aria-label="Filter by category">
-                        <button type="button" class="filter-btn active" data-filter-type="category" data-filter-value="all" aria-pressed="true">All</button>
-                        <button type="button" class="filter-btn" data-filter-type="category" data-filter-value="dashboards" aria-pressed="false">Dashboards</button>
-                        <button type="button" class="filter-btn" data-filter-type="category" data-filter-value="automation" aria-pressed="false">Automation</button>
-                        <button type="button" class="filter-btn" data-filter-type="category" data-filter-value="enablement" aria-pressed="false">Enablement</button>
-                        <button type="button" class="filter-btn" data-filter-type="category" data-filter-value="strategic" aria-pressed="false">Strategic</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== PROJECTS ===== -->
-        <div id="projects-container">
-
-            <!-- 01 — Dashboards & Data Infrastructure -->
-            <section id="dashboards" data-category="dashboards" class="project-section">
-                <h2 class="section-header">Dashboards & Data Infrastructure</h2>
-                <div class="projects-grid">
-                    <article class="project-card" data-role="adops" data-category="dashboards">
-                        <h3 class="project-title">Pipeline Management Dashboard</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Executive Dashboard</span>
+            <!-- ===== ABOUT ===== -->
+            <section id="about" class="about-section">
+                <div class="container">
+                    <div class="about-inner">
+                        <div class="about-photo">
+                            <img src="Headshot.jpg" alt="Hunter Nilsen" width="180" height="180">
                         </div>
-                        <p class="impact-area">Leadership Decision-Making · Pipeline Health Monitoring</p>
-                        <ul class="project-bullets">
-                            <li>Used by CMO, CRO, and RevOps leadership</li>
-                            <li>Monitors pipeline health and identifies stalled deals</li>
-                            <li>Improves deal velocity tracking</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="dashboards">
-                        <h3 class="project-title">AE Inbound Conversion Dashboard</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Leadership Dashboard</span>
+                        <div class="about-content">
+                            <h1>Hunter Nilsen</h1>
+                            <p class="about-subtitle">RevOps Analyst at Domo</p>
+                            <p class="about-text">I build dashboards, automation workflows, and enablement tools that
+                                turn data into action. With a background in Business Analytics and Information Systems, I
+                                focus on solving operational challenges that drive measurable business impact.</p>
+                            <div class="about-stats">
+                                <span class="about-stat"><strong>15</strong> Projects</span>
+                                <span class="about-stat"><strong>3</strong> Roles at Domo</span>
+                                <span class="about-stat"><strong>MS</strong> Business Analytics</span>
+                            </div>
                         </div>
-                        <p class="impact-area">Sales Performance Management · Marketing Attribution</p>
-                        <ul class="project-bullets">
-                            <li>Used by CMO and RVPs for rep performance visibility</li>
-                            <li>Tracks how marketing leads are worked by individual reps</li>
-                            <li>Shows lead progression through pipeline stages</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="dashboards">
-                        <h3 class="project-title">Marketing SAL Creation Dashboard</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Executive Dashboard</span>
-                        </div>
-                        <p class="impact-area">Funnel Analysis · Gap Identification · Executive Reporting</p>
-                        <ul class="project-bullets">
-                            <li>High-visibility dashboard for CMO, CRO, and CEO</li>
-                            <li>Identified a critical gap in Marketing SAL creation pipeline</li>
-                            <li>Supports executive-level funnel analysis and reporting</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="dashboards">
-                        <h3 class="project-title">Consolidated Team & Leadership App</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Team Enablement App</span>
-                        </div>
-                        <p class="impact-area">Performance Management · Coaching · Analytics</p>
-                        <ul class="project-bullets">
-                            <li>Consolidated dozens of disparate dashboards into one app</li>
-                            <li>Quota tracking, production monitoring, and coaching</li>
-                            <li>Single cohesive analytics platform for team leadership</li>
-                        </ul>
-                    </article>
+                    </div>
                 </div>
             </section>
 
-            <!-- 02 — Automation & Workflows -->
-            <section id="automation" data-category="automation" class="project-section">
-                <h2 class="section-header">Automation & Workflows</h2>
-                <div class="projects-grid">
-                    <article class="project-card" data-role="revops" data-category="automation">
-                        <h3 class="project-title">AI Outbound Engine</h3>
-                        <div class="card-tags">
-                            <span class="role-badge revops">RevOps Analyst</span>
-                            <span class="category-tag">Automation Workflow (Apollo.io)</span>
+            <!-- ===== EXPERIENCE & EDUCATION ===== -->
+            <section id="experience" class="exp-edu-section">
+                <div class="container">
+                    <div class="exp-edu-grid">
+                        <div class="exp-edu-card">
+                            <h2>Experience</h2>
+                            <p class="company-name">Domo</p>
+                            <p class="company-meta">American Fork, Utah · Full-time · 1 yr 11 mos</p>
+                            <div class="timeline">
+                                <div class="timeline-item current">
+                                    <div class="timeline-dot"></div>
+                                    <div>
+                                        <p class="timeline-title">RevOps Analyst <span
+                                                class="timeline-badge">Current</span></p>
+                                        <p class="timeline-date">Dec 2025 – Present</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div>
+                                        <p class="timeline-title">AD Ops Analyst</p>
+                                        <p class="timeline-date">Feb 2025 – Dec 2025 · 11 mos</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div>
+                                        <p class="timeline-title">Account Development Manager</p>
+                                        <p class="timeline-date">Apr 2024 – Feb 2025 · 11 mos</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="impact-area">Pipeline Generation · Prospecting Automation</p>
-                        <ul class="project-bullets">
-                            <li>Built in Apollo.io with ICP definition and TAM building</li>
-                            <li>Automatically prospects and pulls contacts daily</li>
-                            <li>AI-powered personalized email cadences</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="automation">
-                        <h3 class="project-title">Clay Old Opportunity Workflow</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Automation Workflow (Gong + Clay)</span>
+                        <div class="exp-edu-card">
+                            <h2>Education</h2>
+                            <p class="school-name">University of Utah</p>
+                            <div class="degree-list">
+                                <div class="degree-item">
+                                    <div class="degree-icon"></div>
+                                    <div>
+                                        <p class="degree-name">Master's Degree</p>
+                                        <p class="degree-field">Business Analytics</p>
+                                    </div>
+                                </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"></div>
+                                    <div>
+                                        <p class="degree-name">Bachelor's Degree</p>
+                                        <p class="degree-field">Information Systems</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="impact-area">Pipeline Creation · Sales Acceleration</p>
-                        <ul class="project-bullets">
-                            <li>Analyzes old opportunities using Gong call summaries</li>
-                            <li>Extracts use cases and pain points automatically</li>
-                            <li>Sends reps templated emails with account intelligence</li>
-                            <li>Generated 14 SALs and <strong>$90k ACV / $400k TCV closed-won</strong></li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="automation">
-                        <h3 class="project-title">SGL Bulk Upload Process</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Process Improvement</span>
-                        </div>
-                        <p class="impact-area">Operational Efficiency · Sales Ops</p>
-                        <ul class="project-bullets">
-                            <li>Saved ADMs and Sales Ops hours of manual work weekly</li>
-                            <li>Improved campaign attribution accuracy</li>
-                        </ul>
-                    </article>
+                    </div>
                 </div>
             </section>
 
-            <!-- 03 — Team Enablement Tools & Processes -->
-            <section id="enablement" data-category="enablement" class="project-section">
-                <h2 class="section-header">Team Enablement Tools & Processes</h2>
-                <div class="projects-grid">
-                    <article class="project-card" data-role="revops" data-category="enablement">
-                        <h3 class="project-title">Call Review & Coaching App</h3>
-                        <div class="card-tags">
-                            <span class="role-badge revops">RevOps Analyst</span>
-                            <span class="category-tag">Coaching & AI Platform</span>
+            <!-- ===== PROJECTS ===== -->
+            <section id="projects" class="projects-section">
+                <div class="container">
+                    <h2 class="section-header">Projects & Portfolio</h2>
+
+                    <!-- Filters -->
+                    <div class="filter-section" aria-label="Project filters">
+                        <div class="filter-groups">
+                            <div>
+                                <p class="filter-group-label">Role</p>
+                                <div class="filter-buttons" role="group" aria-label="Filter by role">
+                                    <button type="button" class="filter-btn active" data-filter-type="role"
+                                        data-filter-value="all" aria-pressed="true">All</button>
+                                    <button type="button" class="filter-btn" data-filter-type="role"
+                                        data-filter-value="revops" aria-pressed="false">RevOps Analyst</button>
+                                    <button type="button" class="filter-btn" data-filter-type="role"
+                                        data-filter-value="adops" aria-pressed="false">AD Ops Analyst</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="filter-group-label">Category</p>
+                                <div class="filter-buttons" role="group" aria-label="Filter by category">
+                                    <button type="button" class="filter-btn active" data-filter-type="category"
+                                        data-filter-value="all" aria-pressed="true">All</button>
+                                    <button type="button" class="filter-btn" data-filter-type="category"
+                                        data-filter-value="dashboards" aria-pressed="false">Dashboards</button>
+                                    <button type="button" class="filter-btn" data-filter-type="category"
+                                        data-filter-value="automation" aria-pressed="false">Automation</button>
+                                    <button type="button" class="filter-btn" data-filter-type="category"
+                                        data-filter-value="enablement" aria-pressed="false">Enablement</button>
+                                    <button type="button" class="filter-btn" data-filter-type="category"
+                                        data-filter-value="strategic" aria-pressed="false">Strategic</button>
+                                </div>
+                            </div>
                         </div>
-                        <p class="impact-area">Sales Coaching · Performance Improvement · Skill Development</p>
-                        <ul class="project-bullets">
-                            <li>Runs AI-based STC scores against every Gong call</li>
-                            <li>Provides reps with instant performance feedback</li>
-                            <li>Anonymous peer and leader feedback platform</li>
-                            <li>Accelerates skill development</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="revops" data-category="enablement">
-                        <h3 class="project-title">Account Mapping App</h3>
-                        <div class="card-tags">
-                            <span class="role-badge revops">RevOps Analyst</span>
-                            <span class="category-tag">Intelligence & Sales Ops</span>
+                    </div>
+
+                    <!-- Empty state for filters -->
+                    <div id="filter-empty-state" style="display:none; text-align:center; padding:48px 0;">
+                        <p style="font-size:16px; color:#6B7280;">No projects match the selected filters.</p>
+                        <p style="font-size:14px; color:#9CA3AF; margin-top:8px;">Try adjusting your role or category selection.</p>
+                    </div>
+
+                    <!-- Dashboards & Data Infrastructure -->
+                    <div id="dashboards" data-category="dashboards" class="project-category">
+                        <h3 class="project-category-title">Dashboards & Data Infrastructure</h3>
+                        <div class="projects-grid">
+
+                            <article class="project-card" data-role="adops" data-category="dashboards"
+                                data-slug="pipeline-management-dashboard">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+                                <h4 class="project-title">Pipeline Management Dashboard</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Executive Dashboard</span>
+                                </div>
+                                <p class="card-summary">Executive dashboard used by CMO, CRO, and RevOps leadership to
+                                    monitor pipeline health and identify stalled deals.</p>
+                                <a href="#/project/pipeline-management-dashboard" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="dashboards"
+                                data-slug="ae-inbound-conversion-dashboard">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+                                <h4 class="project-title">AE Inbound Conversion Dashboard</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Leadership Dashboard</span>
+                                </div>
+                                <p class="card-summary">Tracks how marketing leads are worked by individual reps,
+                                    showing lead progression through pipeline stages for CMO and RVPs.</p>
+                                <a href="#/project/ae-inbound-conversion-dashboard" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="dashboards"
+                                data-slug="marketing-sal-creation-dashboard">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+                                <h4 class="project-title">Marketing SAL Creation Dashboard</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Executive Dashboard</span>
+                                </div>
+                                <p class="card-summary">High-visibility dashboard for CMO, CRO, and CEO that identified
+                                    a critical gap in the Marketing SAL creation pipeline.</p>
+                                <a href="#/project/marketing-sal-creation-dashboard" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="dashboards"
+                                data-slug="consolidated-team-leadership-app">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+                                <h4 class="project-title">Consolidated Team & Leadership App</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Team Enablement App</span>
+                                </div>
+                                <p class="card-summary">Consolidated dozens of disparate dashboards into a single
+                                    cohesive analytics platform for team leadership.</p>
+                                <a href="#/project/consolidated-team-leadership-app" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
                         </div>
-                        <p class="impact-area">Org Chart Navigation · Account Intelligence · Buying Committee Mapping</p>
-                        <ul class="project-bullets">
-                            <li>Maps internal team hierarchy and org charts</li>
-                            <li>Maps external account hierarchies and engagement history</li>
-                            <li>Builds buying committees and identifies champions</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="revops" data-category="enablement">
-                        <h3 class="project-title">New ADM Comp Plan</h3>
-                        <div class="card-tags">
-                            <span class="role-badge revops">RevOps Analyst</span>
-                            <span class="category-tag">Compensation Plan Design</span>
+                    </div>
+
+                    <!-- Automation & Workflows -->
+                    <div id="automation" data-category="automation" class="project-category">
+                        <h3 class="project-category-title">Automation & Workflows</h3>
+                        <div class="projects-grid">
+
+                            <article class="project-card" data-role="revops" data-category="automation"
+                                data-slug="ai-outbound-engine">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                                <h4 class="project-title">AI Outbound Engine</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge revops">RevOps Analyst</span>
+                                    <span class="category-tag">Automation Workflow (Apollo.io)</span>
+                                </div>
+                                <p class="card-summary">Automated prospecting engine built in Apollo.io with ICP
+                                    targeting, daily contact sourcing, and AI-powered personalized email cadences.</p>
+                                <a href="#/project/ai-outbound-engine" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="automation"
+                                data-slug="clay-old-opportunity-workflow">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                                <h4 class="project-title">Clay Old Opportunity Workflow</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Automation Workflow (Gong + Clay)</span>
+                                </div>
+                                <p class="card-summary">Analyzes old opportunities using Gong call summaries to extract
+                                    use cases and auto-generate templated outreach for reps.</p>
+                                <a href="#/project/clay-old-opportunity-workflow" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="automation"
+                                data-slug="sgl-bulk-upload-process">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                                <h4 class="project-title">SGL Bulk Upload Process</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Process Improvement</span>
+                                </div>
+                                <p class="card-summary">Streamlined process that saves ADMs and Sales Ops hours of
+                                    manual work weekly while improving campaign attribution accuracy.</p>
+                                <a href="#/project/sgl-bulk-upload-process" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
                         </div>
-                        <p class="impact-area">Team Motivation · Financial Modeling · Sales Incentives</p>
-                        <ul class="project-bullets">
-                            <li>Maintained same cost percentage for the business</li>
-                            <li>Drove increased incentives for ADMs</li>
-                            <li>Financial modeling and scenario analysis</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="revops" data-category="enablement">
-                        <h3 class="project-title">Market Intelligence App</h3>
-                        <div class="card-tags">
-                            <span class="role-badge revops">RevOps Analyst</span>
-                            <span class="category-tag">Intelligence Application (Jupyter)</span>
+                    </div>
+
+                    <!-- Team Enablement Tools & Processes -->
+                    <div id="enablement" data-category="enablement" class="project-category">
+                        <h3 class="project-category-title">Team Enablement Tools & Processes</h3>
+                        <div class="projects-grid">
+
+                            <article class="project-card" data-role="revops" data-category="enablement"
+                                data-slug="call-review-coaching-app">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Call Review & Coaching App</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge revops">RevOps Analyst</span>
+                                    <span class="category-tag">Coaching & AI Platform</span>
+                                </div>
+                                <p class="card-summary">AI-powered platform that scores every Gong call against STC
+                                    criteria and provides instant feedback with anonymous peer and leader reviews.</p>
+                                <a href="#/project/call-review-coaching-app" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="revops" data-category="enablement"
+                                data-slug="account-mapping-app">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Account Mapping App</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge revops">RevOps Analyst</span>
+                                    <span class="category-tag">Intelligence & Sales Ops</span>
+                                </div>
+                                <p class="card-summary">Maps internal and external org hierarchies, engagement history,
+                                    and buying committees to identify champions and decision-makers.</p>
+                                <a href="#/project/account-mapping-app" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="revops" data-category="enablement"
+                                data-slug="new-adm-comp-plan">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">New ADM Comp Plan</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge revops">RevOps Analyst</span>
+                                    <span class="category-tag">Compensation Plan Design</span>
+                                </div>
+                                <p class="card-summary">Redesigned ADM compensation plan that increased incentives while
+                                    maintaining the same cost percentage for the business.</p>
+                                <a href="#/project/new-adm-comp-plan" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="revops" data-category="enablement"
+                                data-slug="market-intelligence-app">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Market Intelligence App</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge revops">RevOps Analyst</span>
+                                    <span class="category-tag">Intelligence Application (Jupyter)</span>
+                                </div>
+                                <p class="card-summary">Jupyter-based application aggregating AI updates, brand health,
+                                    competitive positioning, customer intelligence, and win/loss analysis for executive
+                                    decision-making.</p>
+                                <a href="#/project/market-intelligence-app" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="enablement"
+                                data-slug="commission-calculator">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Commission Calculator</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Team Enablement Tool</span>
+                                </div>
+                                <p class="card-summary">Tool that models monthly earnings and commission scenarios,
+                                    improving ADM transparency and motivation.</p>
+                                <a href="#/project/commission-calculator" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="enablement"
+                                data-slug="account-research-agent">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Account Research Agent</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Enablement Tool (Automation)</span>
+                                </div>
+                                <p class="card-summary">Automated pre-discovery account intelligence that improves
+                                    meeting readiness for ADMs and Sales.</p>
+                                <a href="#/project/account-research-agent" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
+                            <article class="project-card" data-role="adops" data-category="enablement"
+                                data-slug="next-best-use-case-tool">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+                                <h4 class="project-title">Next Best Use Case Tool</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Team Enablement Tool</span>
+                                </div>
+                                <p class="card-summary">Data-backed use case prioritization tool leveraged by the upsell
+                                    team for expansion conversations.</p>
+                                <a href="#/project/next-best-use-case-tool" class="card-link">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
                         </div>
-                        <p class="impact-area">C-Suite Decision-Making · Strategic Planning</p>
-                        <ul class="project-bullets">
-                            <li>Jupyter-based application for executive decision-making</li>
-                            <li>Aggregates AI updates, brand health, and competitive positioning</li>
-                            <li>Covers customer intelligence, industry trends, and market share</li>
-                            <li>Includes win/loss analysis</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="enablement">
-                        <h3 class="project-title">Commission Calculator</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Team Enablement Tool</span>
+                    </div>
+
+                    <!-- Strategic Initiatives -->
+                    <div id="strategic" data-category="strategic" class="project-category">
+                        <h3 class="project-category-title">Strategic Initiatives</h3>
+                        <div class="projects-grid">
+
+                            <article class="project-card featured" data-role="adops" data-category="strategic"
+                                data-slug="free-trial-growth-initiative">
+                                <div class="card-category-icon"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+                                <h4 class="project-title">Free Trial Growth Initiative</h4>
+                                <div class="card-tags">
+                                    <span class="role-badge adops">AD Ops Analyst</span>
+                                    <span class="category-tag">Strategic Initiative (Cross-Functional)</span>
+                                </div>
+                                <p class="card-summary">Led a cross-functional transformation of the trial experience,
+                                    dramatically improving onboarding scheduling, attendance, and conversion rates.</p>
+                                <div class="stats-grid">
+                                    <div>
+                                        <div class="stat-value">&uarr;89%</div>
+                                        <div class="stat-label">Onboarding Scheduling</div>
+                                    </div>
+                                    <div>
+                                        <div class="stat-value">2&times;</div>
+                                        <div class="stat-label">Attendance Rate</div>
+                                    </div>
+                                    <div>
+                                        <div class="stat-value">27-32%</div>
+                                        <div class="stat-label">MQL&rarr;SAL</div>
+                                    </div>
+                                    <div>
+                                        <div class="stat-value">14&rarr;4</div>
+                                        <div class="stat-label">Days to Onboarding</div>
+                                    </div>
+                                </div>
+                                <a href="#/project/free-trial-growth-initiative" class="card-link"
+                                    style="margin-top: 20px;">
+                                    View Project
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </article>
+
                         </div>
-                        <p class="impact-area">Team Motivation · Compensation Transparency</p>
-                        <ul class="project-bullets">
-                            <li>Models monthly earnings and commission scenarios</li>
-                            <li>Improved ADM transparency and motivation</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="enablement">
-                        <h3 class="project-title">Account Research Agent</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Enablement Tool (Automation)</span>
-                        </div>
-                        <p class="impact-area">Sales Efficiency · Meeting Readiness</p>
-                        <ul class="project-bullets">
-                            <li>Automated pre-discovery account intelligence</li>
-                            <li>Improves meeting readiness for ADMs and Sales</li>
-                        </ul>
-                    </article>
-                    <article class="project-card" data-role="adops" data-category="enablement">
-                        <h3 class="project-title">Next Best Use Case Tool</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Team Enablement Tool</span>
-                        </div>
-                        <p class="impact-area">Upsell & Cross-sell Acceleration</p>
-                        <ul class="project-bullets">
-                            <li>Leveraged by the upsell team for expansion conversations</li>
-                            <li>Data-backed use case prioritization</li>
-                        </ul>
-                    </article>
+                    </div>
+
                 </div>
             </section>
 
-            <!-- 04 — Strategic Initiatives -->
-            <section id="strategic" data-category="strategic" class="project-section">
-                <h2 class="section-header">Strategic Initiatives</h2>
-                <div class="projects-grid">
-                    <article class="project-card featured" data-role="adops" data-category="strategic">
-                        <h3 class="project-title">Free Trial Growth Initiative</h3>
-                        <div class="card-tags">
-                            <span class="role-badge adops">AD Ops Analyst</span>
-                            <span class="category-tag">Strategic Initiative (Cross-Functional)</span>
-                        </div>
-                        <p class="impact-area">Funnel Optimization · Revenue Growth · Product Intelligence</p>
-                        <ul class="project-bullets">
-                            <li>Led cross-functional transformation of the trial experience</li>
-                            <li>Created end-to-end lifecycle visibility</li>
-                            <li>Automated Gong transcript analysis to surface recurring objections</li>
-                        </ul>
-                        <div class="stats-grid">
-                            <div>
-                                <div class="stat-value">↑89%</div>
-                                <div class="stat-label">Onboarding Scheduling</div>
-                            </div>
-                            <div>
-                                <div class="stat-value">2×</div>
-                                <div class="stat-label">Attendance Rate</div>
-                            </div>
-                            <div>
-                                <div class="stat-value">27-32%</div>
-                                <div class="stat-label">MQL→SAL</div>
-                            </div>
-                            <div>
-                                <div class="stat-value">14→4</div>
-                                <div class="stat-label">Days to Onboarding</div>
-                            </div>
-                        </div>
-                        <p class="featured-footnote">Two of the best months since the Freemium drop occurred after these changes.</p>
-                    </article>
-                </div>
-            </section>
+        </main>
+    </div>
 
-        </div>
-    </main>
+    <!-- ===== PROJECT DETAIL VIEW ===== -->
+    <div id="view-project" style="display:none">
+        <!-- Populated dynamically by app.js -->
+    </div>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="footer-container">
-        <div class="footer-content">
+    <footer class="footer">
+        <div class="container">
             <p class="footer-name">Hunter Nilsen</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/hunternilsen/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-                <a href="https://github.com/hunternilsen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/hunternilsen/" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/hunternilsen" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
             <p class="footer-copyright">&copy; <span id="current-year"></span> Hunter Nilsen</p>
         </div>
     </footer>
 
+    <script src="project-data.js"></script>
     <script src="app.js"></script>
 </body>
 
