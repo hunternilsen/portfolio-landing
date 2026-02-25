@@ -562,15 +562,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-category {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .project-category-title {
-  font-size: 20px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 20px;
-  padding-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -582,9 +584,9 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Project Row ── */
 .project-card {
   display: flex;
-  gap: 24px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--color-border);
+  gap: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-light);
   transition: background-color 0.2s;
 }
 
@@ -594,10 +596,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-card:hover {
   background: var(--color-surface);
-  margin-left: -16px;
-  margin-right: -16px;
-  padding-left: 16px;
-  padding-right: 16px;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: var(--radius-sm);
 }
 
@@ -605,12 +607,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .row-date {
   flex-shrink: 0;
-  width: 76px;
+  width: 72px;
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-text-muted);
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
 .row-body {
@@ -621,22 +623,19 @@ h1, h2, h3, h4, h5, h6 {
 .row-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   gap: 16px;
-  margin-bottom: 8px;
 }
 
 .project-title {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
+/* Hide tags in list view — visible in detail pages */
+.projects-list .card-tags {
+  display: none;
 }
 
 .role-badge {
@@ -667,29 +666,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-summary {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--color-text-secondary);
+  margin-top: 2px;
 }
 
 .card-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-text-muted);
   white-space: nowrap;
-  transition: gap 0.2s;
+  transition: color 0.2s;
 }
 .card-link:hover {
-  gap: 10px;
-  color: var(--color-accent-dark);
+  color: var(--color-accent);
 }
 .card-link svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   fill: currentColor;
   transition: transform 0.2s;
 }
@@ -699,11 +698,11 @@ h1, h2, h3, h4, h5, h6 {
 .project-card.featured {
   background: var(--color-accent-bg);
   border-bottom: 1px solid var(--color-accent-light);
-  border-left: 3px solid var(--color-accent);
-  padding-left: 16px;
-  margin-left: -16px;
-  margin-right: -16px;
-  padding-right: 16px;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-right: 12px;
   border-radius: var(--radius-sm);
 }
 
@@ -715,16 +714,16 @@ h1, h2, h3, h4, h5, h6 {
 .row-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 6px;
 }
 
 .row-stat {
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--color-accent);
-  padding: 3px 12px;
+  padding: 2px 8px;
   background: var(--color-bg);
   border-radius: var(--radius-full);
   border: 1px solid var(--color-accent-light);
@@ -993,7 +992,7 @@ a:focus-visible {
   /* Compact rows: stack date above content on mobile */
   .project-card {
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
   .row-date {
@@ -1003,15 +1002,7 @@ a:focus-visible {
   .row-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
-  }
-
-  .row-stats {
-    gap: 8px;
-  }
-
-  .row-stat {
-    font-size: 12px;
+    gap: 4px;
   }
 
   .detail-metrics {
