@@ -47,5 +47,5 @@ When adding or editing projects, update `projects.md`, `project-data.js`, and `i
 - Each card needs: `data-role` (`revops`/`adops`), `data-category` (`dashboards`/`automation`/`enablement`/`strategic`), `data-slug`, role badge, category tag, summary, "View Project" link
 
 ## Future Improvements
-- **Rich detail pages (Option 4):** Port COMINT landing page structure (`/Users/hunternilsen/Documents/Domo/VS Code/comint/landing.html`) into native portfolio detail pages. Adapt the COMINT template's sections (hero, stats row, workflow diagram, feature cards, expandable rubrics) to use the portfolio's light theme and Inter/Lato typography. This replaces the current placeholder detail content with COMINT-quality pages for each project.
+- **Rich detail pages:** Port RevRadio landing page structure into native portfolio detail pages. Adapt the template's sections (hero, stats row, workflow diagram, feature cards, expandable rubrics) to use the portfolio's light theme and Inter/Lato typography.
 - **Fill in project detail content:** All 15 projects in `project-data.js` have placeholder text in their `detail` fields (problem, solution, building, results). Replace with real content.
