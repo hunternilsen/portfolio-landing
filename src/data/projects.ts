@@ -1,7 +1,6 @@
-// Project data for Hunter Nilsen's portfolio
-// Detail sections are placeholders — replace with real content
+import type { Project } from '../types/project'
 
-window.PROJECT_DATA = [
+export const PROJECT_DATA: Project[] = [
   // ── Dashboards & Data Infrastructure ──
   {
     slug: "pipeline-management-dashboard",
@@ -159,6 +158,7 @@ window.PROJECT_DATA = [
     summary: "Analyzes old opportunities using Gong call summaries to extract use cases and auto-generate templated outreach for reps.",
     company: "Domo",
     featured: false,
+    cardStats: ["14 SALs", "$90k ACV", "$400k TCV"],
     detail: {
       tagline: "Reviving old opportunities with AI-powered account intelligence.",
       metrics: [
@@ -994,6 +994,7 @@ window.PROJECT_DATA = [
     summary: "Led a cross-functional transformation of the trial experience, dramatically improving onboarding scheduling, attendance, and conversion rates.",
     company: "Domo",
     featured: false,
+    cardStats: ["↑89% Scheduling", "2× Attendance", "27-32% MQL→SAL", "14→4 Days"],
     detail: {
       tagline: "Cross-functional transformation of the free trial experience.",
       metrics: [

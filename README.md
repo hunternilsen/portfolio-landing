@@ -1,32 +1,33 @@
-# Hunter Nilsen — Interactive Project Portfolio
+# Portfolio — Hunter Nilsen
 
-A personal portfolio showcasing RevOps and AD Ops projects at Domo, built as a static single-page site with filtering, scroll animations, and a University of Utah color theme.
+Single-page portfolio at [hunternilsen.github.io/portfolio-landing](https://hunternilsen.github.io/portfolio-landing/).
 
-**Live:** [hunternilsen.github.io/portfolio-landing](https://hunternilsen.github.io/portfolio-landing/)
+Built with Vite 5 + React 18 + TypeScript (strict). Hash-routed, client-side only.
 
-## Projects Featured
+## Develop
 
-- **Dashboards & Data Infrastructure** — Pipeline Management, AE Inbound Conversion, Marketing SAL Creation, Consolidated Team & Leadership App
-- **Automation & Workflows** — AI Outbound Engine, Clay Old Opportunity Workflow, SGL Bulk Upload Process
-- **Team Enablement Tools & Processes** — Call Review & Coaching App, Account Mapping App, New ADM Comp Plan, Market Intelligence App, Commission Calculator, Account Research Agent, Next Best Use Case Tool
-- **Strategic Initiatives** — Free Trial Growth Initiative
+```bash
+npm install
+npm run dev
+```
 
-## Tech
+Dev server runs at `http://localhost:5173/`.
 
-- HTML / CSS / vanilla JS
-- Tailwind CSS v4 (browser CDN)
-- Playfair Display + DM Sans (Google Fonts)
-- No build step — open `index.html` directly or deploy to any static host
+## Build
 
-## Files
+```bash
+npm run build       # writes to dist/
+npm run typecheck   # strict tsc -b
+```
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing page (all markup + styles inline) |
-| `app.js` | Filtering, scroll progress, intersection observer animations |
-| `projects.md` | Source content for all projects, experience, and education |
-| `manifest.json` | Domo Custom App manifest |
+## Deploy to GitHub Pages
 
-## Filters
+```bash
+npm run deploy:pages
+```
 
-Cards can be filtered by **Role** (RevOps Analyst, AD Ops Analyst) and **Category** (Dashboards, Automation, Enablement, Strategic).
+Builds the project and force-pushes `dist/` to the `gh-pages` branch via the `gh-pages` npm package. GitHub Pages is configured to serve from that branch.
+
+## Project Structure
+
+See [CLAUDE.md](CLAUDE.md) for the full architectural breakdown — routing, data shape, section types, and common maintenance tasks.
